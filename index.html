@@ -203,6 +203,15 @@ ul.hist li:last-child{border-bottom:0}
 .btn.ghost[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .pk{cursor:pointer}.pbkb{max-width:560px}
 
+/* hints, chord staff, key labels, guides */
+.hint{background:var(--brass-soft);color:var(--brass);padding:11px 14px;border-radius:10px;font-size:.9375rem}
+.chordbox{max-width:280px}
+.chordbox svg{display:block;width:100%;height:auto}
+.kl{font:600 12px var(--body);fill:#5B6770;text-anchor:middle;pointer-events:none}
+.guide{border:1px solid var(--line);border-radius:12px;padding:0 16px;background:var(--surface)}
+.guide summary{padding:12px 0;font-weight:600;cursor:pointer}
+.guide ol{margin:0 0 14px;padding-left:20px;display:flex;flex-direction:column;gap:5px;color:var(--muted);font-size:.9375rem}
+
 /* metronome dock */
 .met{position:fixed;left:0;right:0;bottom:0;z-index:9;background:var(--surface);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
 .metin{display:flex;align-items:center;gap:12px;padding-block:10px}
@@ -276,18 +285,18 @@ nav a{padding:10px 13px}
     </div>
     <div class="tablewrap">
       <table>
-        <thead><tr><th>Pattern</th><th>Keys</th><th>Played</th><th>Metronome</th></tr></thead>
+        <thead><tr><th>Pattern</th><th>Keys</th><th>Played</th><th>Click</th><th>Notes per click</th></tr></thead>
         <tbody>
-          <tr><td>Two-octave scales</td><td>D, A, B♭, E♭ major<br>B, G, C minor (harmonic and melodic)</td><td>Hands together, 2 octaves</td><td class="num">92</td></tr>
-          <tr><td>Formula pattern</td><td>C minor (harmonic)</td><td>Hands together, 2 octaves</td><td class="num">92</td></tr>
-          <tr><td>Chromatic scale</td><td>Starting on C</td><td>Hands separately, 1 octave</td><td class="num">104</td></tr>
-          <tr><td>Tonic triads, broken</td><td>D, A, B♭, E♭ major<br>B, G, C minor</td><td>Hands together, 2 octaves, root position and inversions</td><td class="num">60</td></tr>
-          <tr><td>Tonic triads, solid</td><td>Same seven keys</td><td>Hands together, 2 octaves, root position and inversions</td><td class="num">120</td></tr>
-          <tr><td>Tonic arpeggios</td><td>Same seven keys</td><td>Hands separately, 2 octaves, root position only</td><td class="num">72</td></tr>
+          <tr><td>Two-octave scales</td><td>D, A, B♭, E♭ major<br>B, G, C minor (harmonic and melodic)</td><td>Hands together, 2 octaves</td><td class="num">92</td><td>Two (eighth notes)</td></tr>
+          <tr><td>Formula pattern</td><td>C minor (harmonic)</td><td>Hands together, 2 octaves</td><td class="num">92</td><td>Two (eighth notes)</td></tr>
+          <tr><td>Chromatic scale</td><td>Starting on C</td><td>Hands separately, 1 octave</td><td class="num">104</td><td>Two (eighth notes)</td></tr>
+          <tr><td>Tonic triads, broken</td><td>D, A, B♭, E♭ major<br>B, G, C minor</td><td>Hands together, 2 octaves, root position and inversions</td><td class="num">60</td><td>Three (triplets)</td></tr>
+          <tr><td>Tonic triads, solid</td><td>Same seven keys</td><td>Hands together, 2 octaves, root position and inversions</td><td class="num">120</td><td>One chord, then one click of rest</td></tr>
+          <tr><td>Tonic arpeggios</td><td>Same seven keys</td><td>Hands separately, 2 octaves, root position only</td><td class="num">72</td><td>Two (eighth notes)</td></tr>
         </tbody>
       </table>
     </div>
-    <p class="small muted">Metronome numbers are from the syllabus chart. The note value each click stands for is printed beside it on p. 38 of the syllabus; check it with your teacher.</p>
+    <p class="small muted">Tempos and note values are from the chart on p. 38 of the syllabus. Each click is one quarter-note beat.</p>
     <div class="stack">
       <div class="row spread">
         <h2>Readiness by key</h2>
@@ -317,6 +326,12 @@ nav a{padding:10px 13px}
       <h1>Ear trainer</h1>
       <p class="muted">Four exam tests, 10 marks in total, plus a notation drill. Sit at the piano with the sound on.</p>
     </div>
+    <details class="guide"><summary>How to use the ear trainer</summary><ol>
+      <li>Pick a test. The first four are the exam tests; Notation is an extra drill and Mix shuffles all five.</li>
+      <li>Press Play and listen without touching the piano. Hear again as often as you need while you are learning.</li>
+      <li>Answer by tapping a choice, pressing the on-screen keys, or tapping the rhythm on the pad.</li>
+      <li>Stuck? Hint gives a way in without giving the answer. Keyboard opens piano keys you can try notes on.</li>
+      <li>Progress at the bottom is kept between visits, and the questions lean toward what you miss most.</li></ol></details>
     <div class="seg" role="group" aria-label="Ear test" id="ear-modes">
       <button data-act="earmode" data-mode="playback">Playback</button>
       <button data-act="earmode" data-mode="mel">Notation</button>
@@ -337,6 +352,12 @@ nav a{padding:10px 13px}
       <h1>Sight reading</h1>
       <p class="muted">Two tests, 10 marks: rhythm is worth 3 and playing 7. Every passage here is new and has never been seen before, which is the point.</p>
     </div>
+    <details class="guide"><summary>How to use sight reading</summary><ol>
+      <li>Choose Playing or Rhythm, then how you want to work.</li>
+      <li>Guided walks one passage through four steps: read the signs, mark it up with a finger or pencil, tap the rhythm, then play, record and rate yourself.</li>
+      <li>On your own gives a fresh passage each time; you can fix the time signature and key.</li>
+      <li>Exam run hides the passage until you begin, gives a short look-over, and allows one attempt.</li>
+      <li>In the rhythm test the notes are written as a melody, but you only tap, clap or speak the rhythm.</li></ol></details>
     <div class="row">
       <div class="seg" role="group" aria-label="Sight reading test" id="sight-kinds">
         <button data-act="sightkind" data-kind="play">Playing</button>
@@ -435,12 +456,12 @@ nav a{padding:10px 13px}
         <table>
           <thead><tr><th>Test</th><th>What happens</th></tr></thead>
           <tbody>
-            <tr><td>Clapback</td><td>Clap, tap or sing the rhythm of a two- to four-bar melody after hearing it twice. The examiner names the time signature and counts one bar.</td></tr>
+            <tr><td>Clapback</td><td>Clap, tap or sing the rhythm of a two- to four-bar melody in 3/4, 4/4 or 6/8 after hearing it twice. The examiner names the time signature and counts one bar.</td></tr>
             <tr><td>Intervals</td><td>Name or sing a minor 3rd, major 3rd, perfect 4th, perfect 5th or perfect octave. Each is played once, ascending and descending.</td></tr>
             <tr><td>Chords</td><td>Say whether a solid root-position triad is major or minor. Then say whether a single note is the root, third or fifth of a broken triad.</td></tr>
             <tr><td>Playback</td><td>Play back six to eight notes built on the first five notes of the scale, in D or A major, G or C minor, starting on the tonic, mediant or dominant. You hear the tonic triad once and the melody twice.</td></tr>
-            <tr><td>Sight rhythm</td><td>Tap a steady beat for one bar, then keep tapping while you speak, tap or clap a four-bar rhythm.</td></tr>
-            <tr><td>Sight playing</td><td>Play a four-bar passage, hands together, in C, G, D or F major, or A, E or D minor.</td></tr>
+            <tr><td>Sight rhythm</td><td>Tap a steady beat for one bar, then keep tapping while you speak, tap or clap a four-bar rhythm in 3/4 or 4/4. It can include dotted rhythms and quarter rests.</td></tr>
+            <tr><td>Sight playing</td><td>Play a four-bar passage, hands together, in 3/4 or 4/4, in C, G, D or F major, or A, E or D minor.</td></tr>
             <tr><td>Etudes</td><td>Two technically contrasting etudes from the syllabus list. A popular selection may replace one.</td></tr>
           </tbody>
         </table>
@@ -810,15 +831,15 @@ function statRows(rows){
 
 /* ---------- tapping a rhythm and checking it ---------- */
 const tap={on:false,taps:[],res:null,spec:null,timer:null,p0:0};
-// spec: {exp: note starts in beats, total: beats in the rhythm, beats: per bar, beat: seconds, clicks, render, done}
+// spec: {exp: note starts in seconds, len: seconds, cinN clicks of count-in, cinGap seconds apart, clicks: keep the beat going, render, done}
 function tapStart(spec){
   metStop();stopNotes();clearTimeout(tap.timer);
-  const a=ctx(),t0=a.currentTime+.15,s=t0+spec.beats*spec.beat;
-  for(let i=0;i<spec.beats;i++)click(t0+i*spec.beat);
-  if(spec.clicks)for(let i=0;i<spec.total;i++)click(s+i*spec.beat);
+  const a=ctx(),t0=a.currentTime+.15,s=t0+spec.cinN*spec.cinGap;
+  for(let i=0;i<spec.cinN;i++)click(t0+i*spec.cinGap);
+  if(spec.clicks)for(let x=0;x<spec.len-.01;x+=spec.cinGap)click(s+x);
   tap.spec=spec;tap.taps=[];tap.res=null;tap.on=true;
   tap.p0=performance.now()+(s-a.currentTime)*1000;
-  tap.timer=setTimeout(tapEnd,(s-a.currentTime+spec.total*spec.beat+.5)*1000);
+  tap.timer=setTimeout(tapEnd,(s-a.currentTime+spec.len+.5)*1000);
   spec.render();
 }
 function tapHit(){
@@ -828,8 +849,11 @@ function tapHit(){
 }
 function tapEnd(){
   if(!tap.on)return;tap.on=false;clearTimeout(tap.timer);stopNotes();
-  const sp=tap.spec,exp=sp.exp.map(b=>b*sp.beat),tol=Math.max(.13,sp.beat*.25);
-  let taps=tap.taps.filter(t=>t>-sp.beat*.5);
+  const sp=tap.spec,exp=sp.exp,beat=sp.cinGap;
+  // Tolerance tightens when the rhythm has quick notes, so a sixteenth cannot be mistaken for its neighbour.
+  let gap=beat;for(let i=1;i<exp.length;i++)gap=Math.min(gap,exp[i]-exp[i-1]);
+  const tol=Math.max(.08,Math.min(.15,gap*.6));
+  let taps=tap.taps.filter(t=>t>-beat*.5);
   // A steady lag (speaker delay, reaction time) is not a rhythm mistake: line the taps up by their median offset first.
   const offs=taps.map(t=>t-exp.reduce((p,c)=>Math.abs(c-t)<Math.abs(p-t)?c:p)).sort((x,y)=>x-y);
   const off=offs.length?Math.max(-.25,Math.min(.25,offs[offs.length>>1])):0;
@@ -839,7 +863,7 @@ function tapEnd(){
     taps.forEach((t,i)=>{const d=Math.abs(t-e);if(!used.has(i)&&d<=bd){bd=d;bi=i;}});
     if(bi>=0)used.add(bi);return bi>=0;
   });
-  tap.res={exp,taps,hit,extra:taps.map((t,i)=>!used.has(i)),len:sp.total*sp.beat,beat:sp.beat,
+  tap.res={exp,taps,hit,extra:taps.map((t,i)=>!used.has(i)),len:sp.len,beat,
     n:hit.filter(Boolean).length,ok:hit.every(Boolean)&&used.size===taps.length};
   sp.done(tap.res);
 }
@@ -859,7 +883,7 @@ function tapGrid(r){
 const rec={on:false,mr:null,buf:null,stream:null,err:''};
 const canRec=()=>!!(navigator.mediaDevices&&navigator.mediaDevices.getUserMedia&&window.MediaRecorder);
 async function recStart(render){
-  metStop();stopNotes();rec.buf=null;rec.err='';
+  stopNotes();rec.buf=null;rec.err='';
   try{
     rec.stream=await navigator.mediaDevices.getUserMedia({audio:true});
     const chunks=[],mr=new MediaRecorder(rec.stream);
@@ -886,11 +910,22 @@ const PB=[{name:'D major',t:62,min:false,n:['D','E','F♯','G','A']},
           {name:'A major',t:57,min:false,n:['A','B','C♯','D','E']},
           {name:'G minor',t:55,min:true,n:['G','A','B♭','C','D']},
           {name:'C minor',t:60,min:true,n:['C','D','E♭','F','G']}];
-const SYL={q:'ta',e:'ti-ti',h:'ta-a'};
+// Keys of the playback test, written for the right hand (C4 = 28).
+const MK=[{name:'D major',sig:2,rh:29},{name:'A major',sig:3,rh:33},{name:'G minor',sig:-2,rh:32},{name:'C minor',sig:-3,rh:28}];
+// Root-position triads that sit on the treble staff: staff position, MIDI root, letter.
+const TRIADS=[[28,60,'C'],[29,62,'D'],[30,64,'E'],[31,65,'F'],[32,67,'G'],[33,69,'A']];
+const HINT={
+  int:'Sing the lower note, then climb the scale to the upper one and count the steps. Tunes that open with each one: minor 3rd, Brahms’s Lullaby; major 3rd, Oh When the Saints; perfect 4th, Here Comes the Bride; perfect 5th, Twinkle, Twinkle; octave, Somewhere Over the Rainbow.',
+  quality:'Major sounds bright and settled; minor sounds darker. Hum the middle note and listen to how far it sits above the bottom one.',
+  pos:'Sing the broken triad from the bottom up: root, third, fifth. Then sing the single note and match it to one of the three.',
+  playback:'The first note is the root, third or fifth of the triad you just heard. Listen for steps against skips. These melodies always finish on the tonic.',
+  mel:'The two lines differ by a single note. Follow one line with your finger as you listen and stop where it goes wrong.',
+  clap:'Tap the beat with your foot while you listen. Notice where the long notes are and where the quick notes come.'
+};
 const NOTE=['C','C♯','D','E♭','E','F','F♯','G','A♭','A','B♭','B'];
 const EAR_MODES=['playback','mel','int','chord','clap'];
 const EAR_NAME={playback:'Playback',mel:'Notation',int:'Intervals',chord:'Chords',clap:'Clapback'};
-const ear={mode:'playback',m:'playback',q:null,answered:null,played:false,revealed:false,loading:false,score:{},entry:[],scored:false};
+const ear={mode:'playback',m:'playback',q:null,answered:null,played:false,revealed:false,loading:false,score:{},entry:[],scored:false,hint:false,kb:false,oct:0};
 const cl=x=>Math.max(0,Math.min(4,x));
 // A right-hand line that stays in one five-finger position and ends on the tonic.
 function melody(k,bars){
@@ -908,40 +943,35 @@ function melody(k,bars){
   return ev;
 }
 function newQ(){
-  ear.answered=null;ear.played=false;ear.revealed=false;ear.entry=[];ear.scored=false;
+  ear.answered=null;ear.played=false;ear.revealed=false;ear.entry=[];ear.scored=false;ear.hint=false;
   tap.on=false;clearTimeout(tap.timer);tap.res=null;stopNotes();
   const m=ear.m=ear.mode==='mix'?pick(EAR_MODES):ear.mode;
   if(m==='int'){const i=wpick(INTS,x=>'int.'+x[0]);ear.q={root:rnd(55,67),ans:i[0],semi:i[2],name:i[1]};}
   else if(m==='chord'){
-    const minor=Math.random()<.5,root=rnd(55,65),kind=wpick(['quality','pos'],x=>'chord.'+x);
-    if(kind==='quality')ear.q={kind,root,minor,ans:minor?'min':'maj',name:minor?'Minor':'Major'};
-    else{const pos=rnd(0,2);ear.q={kind,root,minor,pos,ans:['root','third','fifth'][pos],name:['Root','Third','Fifth'][pos]};}
+    const minor=Math.random()<.5,[d,root,nm]=pick(TRIADS),kind=wpick(['quality','pos'],x=>'chord.'+x);
+    const acc=minor?('CFG'.includes(nm)?'b':''):('DEA'.includes(nm)?'s':''),label=nm+(minor?' minor':' major')+' triad';
+    if(kind==='quality')ear.q={kind,root,minor,d,acc,label,ans:minor?'min':'maj',name:minor?'Minor':'Major'};
+    else{const pos=rnd(0,2);ear.q={kind,root,minor,d,acc,label,pos,ans:['root','third','fifth'][pos],name:['Root','Third','Fifth'][pos]};}
   }else if(m==='playback'){
+    ear.oct=0;
     const k=pick(PB),len=rnd(6,8);let d=pick([0,2,4]);const degs=[d];
     for(let i=1;i<len-1;i++){d=Math.max(0,Math.min(4,d+pick([-1,-1,1,1,-2,2,0])));degs.push(d);}
     degs.push(0);ear.q={k,degs};
   }else if(m==='mel'){
-    const k=pick(SK),A=melody(k,2),B=A.map(e=>({...e}));
+    const k=pick(MK),A=melody(k,2),B=A.map(e=>({...e}));
     const i=rnd(1,B.length-2),o=B[i].d-k.rh;B[i].d=k.rh+(o===0?1:o===4?3:o+pick([-1,1]));
     const sw=Math.random()<.5;ear.q={k,A:sw?B:A,B:sw?A:B,ans:pick(['A','B'])};
   }else{
-    const b=Math.random()<.5?3:4,nb=rnd(2,3),bars=[];
+    // Clapback: 3/4, 4/4 or 6/8, two to four bars. In 6/8 the beat is the dotted quarter.
+    const m6=Math.random()<.33,b=m6?3:pick([3,4]),nb=rnd(2,4),ev=[];
     for(let i=0;i<nb;i++){
-      let rem=b;const bar=[];
-      while(rem>0){
-        let c=pick(rem>=2?[['q',1],['e',1],['q',1],['h',2]]:[['q',1],['e',1]]);
-        if(i===nb-1&&rem<=2)c=rem===2?['h',2]:['q',1];
-        bar.push(c[0]);rem-=c[1];
-      }
-      bars.push(bar);
+      const last=i===nb-1;
+      expand(m6?(last?pick(['d','QQ','JQ']):pick(CL_68)):(last?pick(RY_END[b]):pick(CL_PAT[b])),i*b,ev);
     }
-    let p=rnd(0,4);const sc=[60,62,64,65,67],ons=[];let t=0;
-    bars.flat().forEach(u=>{
-      const step=()=>{p=Math.max(0,Math.min(4,p+pick([-1,1,0])));return sc[p];};
-      if(u==='e'){ons.push([t,.5,step()],[t+.5,.5,step()]);t+=1;}
-      else{const len=u==='h'?2:1;ons.push([t,len,step()]);t+=len;}
-    });
-    ear.q={b,bars,ons,beats:t};
+    let p=rnd(0,4);const sc=[60,62,64,65,67];
+    ev.forEach(e=>{e.d=34;p=cl(p+pick([-1,1,0]));e.m=sc[p];});
+    const u=m6?.4:.6;
+    ear.q={b,nb,ev,ts:m6?[6,8]:[b,4],u,cinN:m6?2:b,cinGap:.6,len:nb*b*u,label:m6?'6/8':b+'/4'};
   }
   renderEar();
 }
@@ -969,10 +999,9 @@ async function playQ(){
     [0,2,4].forEach(s=>note(midiOf(q.k.rh+s,q.k.sig),t,1.3));
     [t+1.9,t+1.9+len+1].forEach(st=>ev.forEach(e=>note(midiOf(e.d,q.k.sig),st+e.t*beat,e.len*beat*.95)));
   }else{
-    const beat=.6;
-    for(let i=0;i<q.b;i++)click(t+i*beat);
-    const s1=t+q.b*beat,s2=s1+(q.beats+q.b)*beat;
-    [s1,s2].forEach(st=>q.ons.forEach(([on,len,p])=>note(p,st+on*beat,Math.max(.25,len*beat*.9))));
+    const ci=q.cinN*q.cinGap;
+    for(let i=0;i<q.cinN;i++)click(t+i*q.cinGap);
+    [t+ci,t+ci+q.len+ci].forEach(st=>q.ev.forEach(e=>note(e.m,st+e.t*q.u,Math.max(.2,e.len*q.u*.9))));
   }
   ear.played=true;renderEar();
 }
@@ -998,28 +1027,57 @@ function pbKey(midi){
   renderEar();
   const k=$('[data-pk="'+midi+'"]');if(k){k.classList.add('down');setTimeout(()=>k.classList.remove('down'),140);}
 }
-function pbKeyboard(q){
-  const W=46,H=176,wh=[53,55,57,59,60,62,64,65,67,69,71,72];let s='',b='';
+function pbKeyboard(tonic){
+  const W=46,H=176,wh=[53,55,57,59,60,62,64,65,67,69,71,72].map(x=>x+12*ear.oct);let s='',b='';
   wh.forEach((m,i)=>{
     s+=`<rect x="${i*W+.5}" y=".5" width="${W-1}" height="${H-1}" rx="4" class="wk pk" data-pk="${m}"/>`;
-    if(m===q.k.t)s+=`<circle cx="${i*W+W/2}" cy="${H-20}" r="7" class="dot tonic" pointer-events="none"/>`;
+    if(m%12===0)s+=`<text x="${i*W+W/2}" y="${H-10}" class="kl">C${m/12-1}</text>`;
+    if(m===tonic)s+=`<circle cx="${i*W+W/2}" cy="${H-38}" r="7" class="dot tonic" pointer-events="none"/>`;
     if(i<wh.length-1&&wh[i+1]-m===2)b+=`<rect x="${(i+1)*W-14}" y="0" width="28" height="108" rx="3" class="bk pk" data-pk="${m+1}"/>`;
   });
-  return `<div class="kb pbkb"><svg viewBox="0 0 ${wh.length*W} ${H}" role="group" aria-label="Piano keys from the F below middle C up to the C above it">${s}${b}</svg></div>`;
+  return `<div class="kb pbkb"><svg viewBox="0 0 ${wh.length*W} ${H}" role="group" aria-label="Piano keys, F to the C an octave and a half above">${s}${b}</svg></div>
+    <div class="row"><button class="btn ghost chipbtn" data-act="oct" data-d="-1"${ear.oct<=-1?' disabled':''}>Lower octave</button>
+    <button class="btn ghost chipbtn" data-act="oct" data-d="1"${ear.oct>=1?' disabled':''}>Higher octave</button></div>`;
 }
-function trebleSVG(k,ev){
-  const n=Math.abs(k.sig),tY=d=>74-(d-30)*5;let s='';
-  for(let i=0;i<5;i++)s+=`<line x1="14" x2="706" y1="${34+i*10}" y2="${34+i*10}" class="sl"/>`;
-  s+=`<line x1="14" x2="14" y1="34" y2="74" class="bl"/>`;
-  s+=`<text x="20" y="${tY(32)+CLEF_G.dy}" class="glyph" font-size="${CLEF_G.fs}">&#x1D11E;</text>`;
-  const g=k.sig>0?'&#x266F;':'&#x266D;',dy=k.sig>0?SHARP_DY:FLAT_DY,tp=k.sig>0?[38,35]:[34];
-  for(let i=0;i<n;i++)s+=`<text x="${70+i*12}" y="${tY(tp[i])+dy}" class="glyph" font-size="${ACC_FS}" text-anchor="middle">${g}</text>`;
-  const tx=66+n*12+14;
-  s+=`<text x="${tx}" y="52" class="tsig">4</text><text x="${tx}" y="72" class="tsig">4</text>`;
-  const x0=tx+16,W=(706-x0)/2;
-  s+=`<line x1="${x0+W}" x2="${x0+W}" y1="34" y2="74" class="bl"/><line x1="706" x2="706" y1="34" y2="74" class="bl"/><line x1="702" x2="702" y1="34" y2="74" class="bl"/>`;
-  s+=drawVoice(ev,4,x0,W,tY,34,d=>{const r=[];for(let x=28;x>=d;x-=2)r.push(x);for(let x=40;x<=d;x+=2)r.push(x);return r;});
-  return `<svg viewBox="0 0 720 108" role="img" aria-label="Two bars of melody on a treble staff">${s}</svg>`;
+// One staff: a treble staff with a key signature when q.k is set, otherwise a single rhythm line.
+function staffSVG(q,extra,ink){
+  const k=q.k,bars=q.bars||4,ts=q.ts||[q.beats,4],tY=d=>74-(d-30)*5;let s='',x=34;
+  const led=d=>{const r=[];for(let v=28;v>=d;v-=2)r.push(v);for(let v=40;v<=d;v+=2)r.push(v);return r;};
+  if(k){
+    for(let i=0;i<5;i++)s+=`<line x1="14" x2="706" y1="${34+i*10}" y2="${34+i*10}" class="sl"/>`;
+    s+=`<line x1="14" x2="14" y1="34" y2="74" class="bl"/>`;
+    s+=`<text x="20" y="${tY(32)+CLEF_G.dy}" class="glyph" font-size="${CLEF_G.fs}">&#x1D11E;</text>`+sigSVG(k.sig,tY,SIG_T);
+    x=66+Math.abs(k.sig)*12+14;
+    s+=`<text x="${x}" y="52" class="tsig">${ts[0]}</text><text x="${x}" y="72" class="tsig">${ts[1]}</text>`;
+  }else{
+    s+=`<line x1="14" x2="706" y1="54" y2="54" class="sl"/>`;
+    s+=`<text x="${x}" y="50" class="tsig">${ts[0]}</text><text x="${x}" y="74" class="tsig">${ts[1]}</text>`;
+  }
+  let x0=x+16;
+  if(q.triad){
+    const cx=x0+18,yt=tY(k.rh+4)-9,yb=tY(k.rh)+9;
+    [0,2,4].forEach(o=>{
+      const d=k.rh+o;led(d).forEach(l=>{s+=`<line x1="${cx-11}" x2="${cx+11}" y1="${tY(l)}" y2="${tY(l)}" class="bl"/>`;});
+      s+=`<ellipse cx="${cx}" cy="${tY(d)}" rx="7" ry="4.6" class="nh hollow"/>`;
+    });
+    s+=`<path d="M${cx-11} ${yt}h-5V${yb}h5M${cx+11} ${yt}h5V${yb}h-5" class="stem" fill="none"/>`;
+    x0+=40;
+  }
+  const W=(706-x0)/bars,y1=k?34:40,y2=k?74:68;
+  for(let i=1;i<bars;i++)s+=`<line x1="${x0+W*i}" x2="${x0+W*i}" y1="${y1}" y2="${y2}" class="bl"/>`;
+  s+=`<line x1="702" x2="702" y1="${y1}" y2="${y2}" class="bl"/><line x1="706" x2="706" y1="${y1}" y2="${y2}" class="bl" stroke-width="2.4"/>`;
+  s+=drawVoice(q.ev,q.beats,x0,W,k?tY:()=>54,k?34:36,k?led:()=>[]);
+  return `<svg viewBox="0 0 720 ${k?108:92}"${ink?' data-ink':''} role="img" aria-label="${bars} bars in ${ts[0]}/${ts[1]} time">${s}<g${ink?' id="ink"':''}>${extra||''}</g></svg>`;
+}
+function chordSVG(q){
+  const tY=d=>74-(d-30)*5;let s='';
+  for(let i=0;i<5;i++)s+=`<line x1="10" x2="230" y1="${34+i*10}" y2="${34+i*10}" class="sl"/>`;
+  s+=`<text x="16" y="${tY(32)+CLEF_G.dy}" class="glyph" font-size="${CLEF_G.fs}">&#x1D11E;</text>`;
+  if(q.d===28)s+=`<line x1="119" x2="151" y1="${tY(28)}" y2="${tY(28)}" class="bl"/>`;
+  [0,2,4].forEach(o=>{s+=`<ellipse cx="135" cy="${tY(q.d+o)}" rx="8" ry="5" class="nh hollow"/>`;});
+  if(q.acc)s+=`<text x="112" y="${tY(q.d+2)+(q.acc==='s'?SHARP_DY:FLAT_DY)}" class="glyph" font-size="${ACC_FS}" text-anchor="middle">${q.acc==='s'?'&#x266F;':'&#x266D;'}</text>`;
+  s+=`<line x1="226" x2="226" y1="34" y2="74" class="bl"/><line x1="230" x2="230" y1="34" y2="74" class="bl" stroke-width="2.4"/>`;
+  return `<svg viewBox="0 0 240 108" role="img" aria-label="A root-position triad on the treble staff">${s}</svg>`;
 }
 function renderEar(){
   document.querySelectorAll('#ear-modes button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===ear.mode));
@@ -1035,18 +1093,21 @@ function renderEar(){
     body=ansBtns(INTS.map(i=>[i[0],i[1]]))+fb();
     if(ear.answered)controls+=next;
   }else if(m==='chord'){
-    prompt=q.kind==='quality'?'You will hear a solid triad once. Is it major or minor?':'You will hear a broken triad, then one of its notes on its own. Is that note the root, third or fifth?';
-    body=ansBtns(q.kind==='quality'?[['maj','Major'],['min','Minor']]:[['root','Root'],['third','Third'],['fifth','Fifth']])+fb();
+    const pos=q.kind==='pos';
+    prompt=pos?'Here is a triad; play it on your piano first if you like. You will hear it broken, then one of its notes on its own. Is that note the root, third or fifth?'
+      :'You will hear a solid triad once. Is it major or minor?';
+    body=(pos||ear.answered?`<div class="chordbox">${chordSVG(q)}</div>`+(ear.answered?`<p class="small muted">${q.label}.</p>`:''):'')
+      +ansBtns(pos?[['root','Root'],['third','Third'],['fifth','Fifth']]:[['maj','Major'],['min','Minor']])+fb();
     if(ear.answered)controls+=next;
   }else if(m==='mel'){
-    prompt='You will hear the tonic triad, then a melody twice. Which line of notation did you hear?';
-    body=`<div class="stack"><span class="label">Pattern A</span><div class="notation">${trebleSVG(q.k,q.A)}</div>
-      <span class="label">Pattern B</span><div class="notation">${trebleSVG(q.k,q.B)}</div></div>`+ansBtns([['A','Pattern A'],['B','Pattern B']])+fb();
+    prompt=`Key: <b>${q.k.name}</b>. You will hear the tonic triad, shown in brackets, then a melody twice. Which line of notation did you hear?`;
+    body=`<div class="stack"><span class="label">Pattern A</span><div class="notation">${staffSVG({k:q.k,beats:4,bars:2,ev:q.A,triad:true})}</div>
+      <span class="label">Pattern B</span><div class="notation">${staffSVG({k:q.k,beats:4,bars:2,ev:q.B,triad:true})}</div></div>`+ansBtns([['A','Pattern A'],['B','Pattern B']])+fb();
     if(ear.answered)controls+=next;
   }else if(m==='playback'){
-    const sc=q.k.min?[0,2,3,5,7]:[0,2,4,5,7],nm=x=>{const i=sc.indexOf(x-q.k.t);return i>=0?q.k.n[i]:NOTE[x%12];};
+    const sc=q.k.min?[0,2,3,5,7]:[0,2,4,5,7],nm=x=>{const i=sc.indexOf(x-q.k.t);return i>=0?q.k.n[i]:NOTE[((x%12)+12)%12];};
     prompt=`Key: <b>${q.k.name}</b>. You will hear the tonic triad, then the melody twice. Play it back on your piano, or on these keys; the marked key is the tonic.`;
-    body=pbKeyboard(q)+`<div class="reveal">${ear.entry.length?ear.entry.map(nm).join('  '):'<span class="muted small">Notes you press after listening show here.</span>'}</div>`;
+    body=pbKeyboard(q.k.t)+`<div class="reveal">${ear.entry.length?ear.entry.map(nm).join('  '):'<span class="muted small">Notes you press after listening show here.</span>'}</div>`;
     if(ear.revealed)body+=`<span class="label">The melody</span><div class="reveal">${q.degs.map(d=>q.k.n[d]).join('  ')}</div>`;
     if(ear.answered){body+=`<p class="fb ${ear.answered==='ok'?'ok':'no'}">${ear.answered==='ok'?'Correct.':'Not quite. Compare your notes with the melody.'}</p>`;controls+=next;}
     else if(ear.revealed)controls+=`<button class="btn ghost" data-act="self" data-ok="1">Got it</button><button class="btn ghost" data-act="self" data-ok="0">Not quite</button>`;
@@ -1055,39 +1116,69 @@ function renderEar(){
       controls+=`<button class="btn ghost" data-act="reveal"${ear.played?'':' disabled'}>I played it on my piano</button>`;
     }
   }else{
-    prompt=`Time signature: <b>${q.b}/4</b>. One bar of clicks counts you in, then the melody plays twice. Then tap the rhythm back.`;
+    prompt=`Time signature: <b>${q.label}</b>${q.ts[0]===6?', two beats in a bar':''}. One bar of clicks counts you in, then the melody plays twice. Then tap the rhythm back.`;
     if(tap.on)body=tapPad();
     else{
       if(tap.res)body=tapGrid(tap.res)+`<p class="fb ${tap.res.ok?'ok':'no'}">${tap.res.ok?'Every note landed.':'Not quite. Check the red marks, then try it again.'}</p>`;
-      if(ear.revealed)body+=`<div class="reveal">${q.bars.map(b=>b.map(u=>SYL[u]).join('  ')).join('  |  ')}</div><p class="small muted">ta is one beat, ti-ti is two half-beats, ta-a is held for two beats.</p>`;
+      if(ear.revealed)body+=`<span class="label">The rhythm</span><div class="notation">${staffSVG({beats:q.b,ts:q.ts,bars:q.nb,ev:q.ev})}</div>`;
       controls+=`<button class="btn${tap.res?' ghost':''}" data-act="eartap"${ear.played?'':' disabled'}>${tap.res?'Tap it again':'Tap it back'}</button>`;
       if(tap.res)controls+=next;
     }
+  }
+  if(!tap.on){
+    controls+=`<button class="btn ghost" data-act="hint" aria-pressed="${ear.hint}">Hint</button>`;
+    if(m!=='playback')controls+=`<button class="btn ghost" data-act="kbtoggle" aria-pressed="${ear.kb}">Keyboard</button>`;
+    if(ear.hint)body=`<p class="hint">${HINT[m==='chord'?q.kind:m]}</p>`+body;
+    if(ear.kb&&m!=='playback')body+=pbKeyboard(null);
   }
   $('#ear-panel').innerHTML=`${ear.mode==='mix'?`<span class="label">${EAR_NAME[m]}</span>`:''}<p>${prompt}</p><div class="row">${controls}</div>${body}
     <p class="small muted">${s.t?s.r+' right out of '+s.t+' this visit.':'No answers yet this visit.'} ${soundNote()}</p>`;
   $('#ear-stats').innerHTML=statRows([['Playback',['playback'],1],['Notation',['mel'],1],['Intervals',INTS.map(i=>'int.'+i[0]),1],
     ['Chords',['chord.quality','chord.pos'],1],['Clapback',['clap'],1]]);
 }
-
 /* ---------- sight reading ---------- */
 // rh / lh: diatonic position of the tonic for each hand's five-finger position (C4 = 28).
 const SK=[{name:'C major',sig:0,rh:28,lh:21},{name:'G major',sig:1,rh:32,lh:18},{name:'D major',sig:2,rh:29,lh:22},
           {name:'F major',sig:-1,rh:31,lh:24},{name:'A minor',sig:0,rh:33,lh:19},{name:'E minor',sig:1,rh:30,lh:23},
           {name:'D minor',sig:-1,rh:29,lh:22}];
 const RH_PAT={3:['qqq','qqq','hq','qh','qeq','qqe'],4:['qqqq','qqqq','hqq','qqh','hh','qeqq','qqeq']};
-const RY_PAT={3:['qqq','hq','qh','qeq','eqq','qrq','eeq','qqe'],4:['qqqq','hqq','qqh','eqh','qeqq','hh','qrqq','eeh','qqeq','hqr']};
+// Rhythm tokens, in quarter-note units: q quarter, h half, d dotted half, w whole, e two eighths, r quarter rest,
+// D dotted quarter + eighth, x dotted eighth + sixteenth; for 6/8: Q dotted quarter, T three eighths, J quarter + eighth.
+const RY_PAT={3:['qqq','hq','qh','qeq','eqq','qrq','eeq','qqe','Dq','qD','xqq','qxq','xeq','qrx'],
+              4:['qqqq','hqq','qqh','eqh','qeqq','hh','qrqq','eeh','qqeq','hqr','Dqq','qDq','Dh','hD','Dee','xqh','qxqq','xqqq','qqxq','Dxq']};
 const RY_END={3:['d','hq'],4:['w','hh','qqh']};
+const CL_PAT={3:RY_PAT[3].filter(p=>!p.includes('r')),4:RY_PAT[4].filter(p=>!p.includes('r'))};
+const CL_68=['QQ','QT','TQ','TT','JQ','JT','QJ','JJ','TJ'];
+function expand(pat,t,ev){
+  for(const u of pat){
+    if(u==='e'){ev.push({t,len:.5,beam:1},{t:t+.5,len:.5,beam:2});t+=1;}
+    else if(u==='x'){ev.push({t,len:.75,beam:1},{t:t+.75,len:.25,beam:2});t+=1;}
+    else if(u==='D'){ev.push({t,len:1.5},{t:t+1.5,len:.5});t+=2;}
+    else if(u==='T'){ev.push({t,len:.5,beam:1},{t:t+.5,len:.5,beam:2},{t:t+1,len:.5,beam:2});t+=1.5;}
+    else if(u==='J'){ev.push({t,len:1},{t:t+1,len:.5});t+=1.5;}
+    else if(u==='r'){ev.push({t,len:1,rest:true});t+=1;}
+    else{const len={q:1,h:2,d:3,w:4,Q:1.5}[u];ev.push({t,len});t+=len;}
+  }
+}
+// Key signatures: which letters are altered, and where the signs sit on each staff.
+const SHARP_L=[3,0,4],FLAT_L=[6,2,5],SIG_T={s:[38,35,39],f:[34,37,33]},SIG_B={s:[24,21,25],f:[20,23,19]};
+function sigSVG(sig,yOf,pos){
+  let s='';const sh=sig>0,p=sh?pos.s:pos.f;
+  for(let i=0;i<Math.abs(sig);i++)s+=`<text x="${70+i*12}" y="${yOf(p[i])+(sh?SHARP_DY:FLAT_DY)}" class="glyph" font-size="${ACC_FS}" text-anchor="middle">${sh?'&#x266F;':'&#x266D;'}</text>`;
+  return s;
+}
 const STEPS=['Read the signs','Mark it up','Tap the rhythm','Play and rate'];
 const sight={kind:'play',way:'guided',meter:0,key:'',q:null,loading:false,step:0,quiz:{},opts:[],tool:'pen',marks:[],model:false,rated:0,phase:'ready',left:0,tick:null};
 function midiOf(d,sig){
   const L=d%7;let m=12*(Math.floor(d/7)+1)+[0,2,4,5,7,9,11][L];
-  if(sig>=1&&L===3)m++;if(sig>=2&&L===0)m++;if(sig<0&&L===6)m--;return m;
+  if(sig>0&&SHARP_L.slice(0,sig).includes(L))m++;
+  if(sig<0&&FLAT_L.slice(0,-sig).includes(L))m--;
+  return m;
 }
 function genSight(){
   const free=sight.way==='free',beats=free&&sight.meter?sight.meter:pick([3,4]);
   clearInterval(sight.tick);recStop();
-  Object.assign(sight,{step:0,quiz:{},marks:[],model:false,rated:0,phase:'ready'});
+  Object.assign(sight,{step:0,quiz:{},marks:[],model:false,match:null,rated:0,phase:'ready'});
   tap.on=false;clearTimeout(tap.timer);tap.res=null;rec.buf=null;rec.err='';
   if(sight.kind==='play'){
     const k=(free&&SK.find(x=>x.name===sight.key))||pick(SK),lhDeg=[0,pick([0,3,4]),4,0],rh=[],lh=[];
@@ -1110,37 +1201,52 @@ function genSight(){
     while(o.length<3){const c=pick(rest).name;if(!o.includes(c))o.push(c);}
     sight.opts=o.sort();
   }else{
-    const ev=[];
-    for(let b=0;b<4;b++){
-      let t=b*beats;
-      pick(b===3?RY_END[beats]:RY_PAT[beats]).split('').forEach(u=>{
-        if(u==='e'){ev.push({t,len:.5,d:34,beam:1},{t:t+.5,len:.5,d:34,beam:2});t+=1;}
-        else if(u==='r'){ev.push({t,len:1,rest:true});t+=1;}
-        else{const len={q:1,h:2,d:3,w:4}[u];ev.push({t,len,d:34});t+=len;}
-      });
-    }
-    sight.q={beats,ev};
+    // The rhythm is written on a melody, as in the exam; only the rhythm is performed.
+    const k=pick(SK),ev=[];
+    for(let b=0;b<4;b++)expand(pick(b===3?RY_END[beats]:RY_PAT[beats]),b*beats,ev);
+    let deg=pick([0,2,4]);
+    ev.forEach(e=>{if(e.rest)return;e.d=k.rh+deg;deg=cl(deg+pick([-1,1,-1,1,0]));});
+    ev.filter(e=>!e.rest).pop().d=k.rh;
+    sight.q={k,beats,ev};
   }
   stopNotes();renderSight();
 }
 function drawVoice(evs,beats,x0,W,yOf,mid,led){
-  let s='';
-  const X=e=>x0+Math.floor(e.t/beats)*W+18+((e.t%beats)/beats)*(W-24);
+  let s='',lastBar=-1,lastX=0;
+  // Space notes by time, but never closer than a notehead and a bit.
+  evs.forEach(e=>{
+    const bar=Math.floor(e.t/beats+1e-6);let x=x0+bar*W+18+((e.t-bar*beats)/beats)*(W-24);
+    if(bar===lastBar)x=Math.max(x,lastX+17);
+    lastBar=bar;lastX=x;e.x=x;e.y=yOf(e.rest?mid:e.d);
+  });
+  // Stems, beams and flags.
   evs.forEach((e,i)=>{
-    const x=X(e);e.x=x;e.y=yOf(e.rest?mid:e.d);
-    if(e.rest){s+=`<text x="${x}" y="${yOf(mid)+REST_DY}" class="glyph" font-size="${REST_FS}" text-anchor="middle">&#x1D13D;</text>`;return;}
-    const y=yOf(e.d);
+    if(e.rest||e.len>=4||e.beam===2)return;
+    e.up=e.d<mid;const dir=e.up?-1:1,th=-dir*4.5;
+    if(e.beam!==1){
+      e.sx=e.x-dir*5.8;e.sy=e.y+dir*30;
+      if(e.len===.5)s+=`<path d="M${e.sx} ${e.sy}q9 ${-dir*7} 8 ${-dir*20}q-1 ${dir*8} -8 ${dir*10}z" class="beam"/>`;
+      return;
+    }
+    let j=i;while(evs[j+1]&&evs[j+1].beam===2)j++;
+    const b=evs[j],ax=e.x-dir*5.8,bx=b.x-dir*5.8;let ay=e.y+dir*30,by=b.y+dir*30;
+    const at=x=>ay+(by-ay)*(x-ax)/(bx-ax);
+    let sh=0;
+    for(let n=i;n<=j;n++){const gap=(at(evs[n].x-dir*5.8)-evs[n].y)*dir;if(gap<24)sh=Math.max(sh,24-gap);}
+    ay+=dir*sh;by+=dir*sh;
+    s+=`<polygon points="${ax-.7},${ay} ${bx+.7},${by} ${bx+.7},${by+th} ${ax-.7},${ay+th}" class="beam"/>`;
+    for(let n=i;n<=j;n++){
+      const v=evs[n];v.up=e.up;v.sx=v.x-dir*5.8;v.sy=at(v.sx);
+      if(v.len===.25){const x1=v.sx-11,o=-dir*7.5;s+=`<polygon points="${x1},${at(x1)+o} ${v.sx+.7},${v.sy+o} ${v.sx+.7},${v.sy+o+th} ${x1},${at(x1)+o+th}" class="beam"/>`;}
+    }
+  });
+  evs.forEach(e=>{
+    const x=e.x,y=e.y;
+    if(e.rest){s+=`<text x="${x}" y="${y+REST_DY}" class="glyph" font-size="${REST_FS}" text-anchor="middle">&#x1D13D;</text>`;return;}
     led(e.d).forEach(l=>{s+=`<line x1="${x-10}" x2="${x+10}" y1="${yOf(l)}" y2="${yOf(l)}" class="bl"/>`;});
     s+=`<ellipse cx="${x}" cy="${y}" rx="6.3" ry="4.5" transform="rotate(-20 ${x} ${y})" class="nh${e.len>=2?' hollow':''}"/>`;
-    if(e.len===3)s+=`<circle cx="${x+12}" cy="${y-((e.d-mid)%2===0?5:0)}" r="1.9" class="nh"/>`;
-    if(e.len>=4)return;
-    e.up=e.beam===2?evs[i-1].up:e.d<mid;
-    const sx=e.up?x+5.8:x-5.8,sy=e.up?y-30:y+30;
-    s+=`<line x1="${sx}" x2="${sx}" y1="${y}" y2="${sy}" class="stem"/>`;
-    if(e.beam===2){
-      const p=evs[i-1],px=X(p)+(p.up?5.8:-5.8),py=yOf(p.d)+(p.up?-30:30),th=e.up?4.5:-4.5;
-      s+=`<polygon points="${px-.7},${py} ${sx+.7},${sy} ${sx+.7},${sy+th} ${px-.7},${py+th}" class="beam"/>`;
-    }
+    if(e.len===3||e.len===1.5||e.len===.75)s+=`<circle cx="${x+11.5}" cy="${y-((e.d-mid)%2===0?5:0)}" r="1.9" class="nh"/>`;
+    if(e.len<4)s+=`<line x1="${e.sx}" x2="${e.sx}" y1="${y}" y2="${e.sy}" class="stem"/>`;
   });
   return s;
 }
@@ -1151,12 +1257,7 @@ function grandSVG(q,extra,ink){
   s+=`<line x1="14" x2="14" y1="40" y2="170" class="bl"/>`;
   s+=`<text x="20" y="${tY(32)+CLEF_G.dy}" class="glyph" font-size="${CLEF_G.fs}">&#x1D11E;</text>`;
   s+=`<text x="20" y="${bY(24)+CLEF_F.dy}" class="glyph" font-size="${CLEF_F.fs}">&#x1D122;</text>`;
-  const g=k.sig>0?'&#x266F;':'&#x266D;',dy=k.sig>0?SHARP_DY:FLAT_DY;
-  const tp=k.sig>0?[38,35]:[34],bp=k.sig>0?[24,21]:[20];
-  for(let i=0;i<n;i++){
-    s+=`<text x="${70+i*12}" y="${tY(tp[i])+dy}" class="glyph" font-size="${ACC_FS}" text-anchor="middle">${g}</text>`;
-    s+=`<text x="${70+i*12}" y="${bY(bp[i])+dy}" class="glyph" font-size="${ACC_FS}" text-anchor="middle">${g}</text>`;
-  }
+  s+=sigSVG(k.sig,tY,SIG_T)+sigSVG(k.sig,bY,SIG_B);
   const tx=66+n*12+14;
   [40,130].forEach(y=>{s+=`<text x="${tx}" y="${y+18}" class="tsig">${q.beats}</text><text x="${tx}" y="${y+38}" class="tsig">4</text>`;});
   const x0=tx+16,W=(706-x0)/4;
@@ -1166,15 +1267,7 @@ function grandSVG(q,extra,ink){
   s+=drawVoice(q.lh,q.beats,x0,W,bY,22,d=>{const r=[];for(let x=16;x>=d;x-=2)r.push(x);for(let x=28;x<=d;x+=2)r.push(x);return r;});
   return `<svg viewBox="0 0 720 200"${ink?' data-ink':''} role="img" aria-label="Four-bar passage in ${q.beats}/4 time on a grand staff">${s}<g${ink?' id="ink"':''}>${extra||''}</g></svg>`;
 }
-function rhythmSVG(q,extra,ink){
-  let s=`<line x1="14" x2="706" y1="60" y2="60" class="sl"/>`;
-  s+=`<text x="34" y="56" class="tsig">${q.beats}</text><text x="34" y="80" class="tsig">4</text>`;
-  const x0=56,W=(706-x0)/4;
-  for(let i=1;i<=4;i++)s+=`<line x1="${x0+W*i}" x2="${x0+W*i}" y1="46" y2="74" class="bl"/>`;
-  s+=`<line x1="702" x2="702" y1="46" y2="74" class="bl"/>`;
-  s+=drawVoice(q.ev,q.beats,x0,W,()=>60,36,()=>[]);
-  return `<svg viewBox="0 0 720 100"${ink?' data-ink':''} role="img" aria-label="Four-bar rhythm in ${q.beats}/4 time">${s}<g${ink?' id="ink"':''}>${extra||''}</g></svg>`;
-}
+const rhythmSVG=staffSVG;
 // Marks: what the student draws, and the model answer worked out from the passage itself.
 const xMark=(x,y)=>`<path d="M${x-6} ${y-6}L${x+6} ${y+6}M${x+6} ${y-6}L${x-6} ${y+6}" class="mk"/>`;
 const inkSVG=()=>sight.marks.map(m=>m.t==='x'?xMark(m.x,m.y):`<polyline points="${m.pts.join(' ')}" class="mk"/>`).join('');
@@ -1183,7 +1276,7 @@ function modelMarks(q){
   if(q.rh)s+=circ(q.rh[0],13)+circ(q.lh[0],13);
   evs.forEach((e,i)=>{
     if(e.rest)s+=circ(e,14);
-    if(e.beam===1)s+=xMark((e.x+evs[i+1].x)/2,q.rh?22:14);
+    if(e.beam===1){let j=i;while(evs[j+1]&&evs[j+1].beam===2)j++;s+=xMark((e.x+evs[j].x)/2,q.rh?22:14);}
     if(q.rh&&i&&e.d===evs[i-1].d)s+=`<line x1="${e.x-11}" x2="${e.x+11}" y1="104" y2="104" class="mk"/>`;
   });
   if(!q.rh){
@@ -1203,16 +1296,17 @@ async function hearSight(){
   if(q.rh)q.rh.concat(q.lh).forEach(e=>note(midiOf(e.d,q.k.sig),s+e.t*beat,e.len*beat*.95));
   else{
     for(let i=0;i<4*q.beats;i++)click(s+i*beat);
-    q.ev.forEach(e=>{if(!e.rest)note(67,s+e.t*beat,Math.max(.3,e.len*beat*.9));});
+    q.ev.forEach(e=>{if(!e.rest)note(midiOf(e.d,q.k.sig),s+e.t*beat,Math.max(.2,e.len*beat*.9));});
   }
 }
 function sightTap(){
-  const q=sight.q;
-  tapStart({exp:(q.rh||q.ev).filter(e=>!e.rest).map(e=>e.t),total:4*q.beats,beats:q.beats,beat:.7,clicks:true,render:renderSight,done:renderSight});
+  const q=sight.q,u=.7;
+  tapStart({exp:(q.rh||q.ev).filter(e=>!e.rest).map(e=>e.t*u),len:4*q.beats*u,cinN:q.beats,cinGap:u,clicks:true,render:renderSight,done:renderSight});
 }
 function askSelf(q){
   const ev=q.rh||q.ev,a=['Did the beat stay steady from start to finish?'];
-  if(ev.some(e=>e.beam))a.push('Were the eighth notes even?');
+  if(ev.some(e=>e.len===.5&&e.beam))a.push('Were the eighth notes even?');
+  if(ev.some(e=>e.len===1.5||e.len===.75))a.push('Did the short note after each dotted note come late enough, not rushed?');
   if(ev.some(e=>e.rest))a.push('Was each rest silent for its full beat?');
   if(ev.some(e=>!e.rest&&e.len>=2))a.push('Did you hold the long notes for their full value?');
   if(q.rh)a.push('Did both hands land together on the first beat of each bar?');
@@ -1224,6 +1318,7 @@ function recBlock(once,model){
   else{
     if(canRec()&&!(once&&rec.buf))s+=`<button class="btn" data-act="recstart">${rec.buf?'Record again':'Record my attempt'}</button>`;
     if(rec.buf)s+=`<button class="btn ghost" data-act="recplay">Hear mine</button>`;
+    if(!once)s+=`<button class="btn ghost" data-act="mettoggle">Metronome on/off</button>`;
     if(model)s+=`<button class="btn ghost" data-act="sighthear"${sight.loading?' disabled':''}>${sight.loading?'Loading piano…':'Hear the model'}</button>`;
   }
   return `<div class="row">${s}</div>`+(rec.err?`<p class="small muted">${rec.err}</p>`
@@ -1246,7 +1341,7 @@ function renderSight(){
     const chip=(act,v,l,on)=>`<button class="btn ghost chipbtn" data-act="${act}" data-v="${v}" aria-pressed="${on}">${l}</button>`;
     h=`<div class="stack"><span class="label">Time signature</span><div class="row">${[[0,'Any'],[3,'3/4'],[4,'4/4']].map(([v,l])=>chip('fmeter',v,l,sight.meter===v)).join('')}</div>`
       +(play?`<span class="label">Key</span><div class="row">${chip('fkey','','Any',!sight.key)}${SK.map(k=>chip('fkey',k.name,k.name,sight.key===k.name)).join('')}</div>`:'')+`</div>`
-      +(play?`<p><b>${esc(q.k.name)}</b>, ${q.beats}/4. Four bars, hands together.</p>`:`<p><b>${q.beats}/4</b>. Four bars to tap, clap or speak.</p>`)
+      +(play?`<p><b>${esc(q.k.name)}</b>, ${q.beats}/4. Four bars, hands together.</p>`:`<p><b>${q.beats}/4</b>. Four bars to tap, clap or speak. Perform the rhythm only, not the pitches.</p>`)
       +svg()+`<div class="row">${fresh}${hear}</div>`
       +(play?`<ol class="steps small muted">
       <li>Take about 30 seconds to look before you play. Find the key signature and the time signature.</li>
@@ -1273,12 +1368,14 @@ function renderSight(){
       if(play)h+=`<p class="small muted">One key signature fits a major key and its relative minor. The last left-hand note is the tonic, which settles it.</p>`;
     }else if(st===1){
       h+=`<p>${play?'Circle the first note in each hand. Put an X above every pair of eighth notes. Draw a short line under any right-hand note that repeats the one before it.'
-        :'Circle every rest. Put an X above every pair of eighth notes. Draw a line to the right of the longest note.'}</p>
+        :'Circle every rest. Put an X above every group of notes joined by a beam. Draw a line to the right of the longest note.'}</p>
         <div class="row"><button class="btn ghost chipbtn" data-act="tool" data-v="pen" aria-pressed="${sight.tool==='pen'}">Pen</button>
         <button class="btn ghost chipbtn" data-act="tool" data-v="x" aria-pressed="${sight.tool==='x'}">X stamp</button>
         <button class="btn ghost" data-act="inkundo"${sight.marks.length?'':' disabled'}>Undo</button>
         <button class="btn ghost" data-act="inkclear">Clear</button></div>`+svg(inkSVG(),true);
-      if(sight.model){h+=`<span class="label">Model answer</span>`+svg(modelMarks(q))+`<p class="small muted">Compare the two. If you missed something, add it to yours before you go on.</p>`;}
+      if(sight.model){h+=`<span class="label">Model answer</span>`+svg(modelMarks(q))+`<p class="small muted">Compare the two. If you missed something, add it to yours before you go on.</p>
+        <div class="row"><span>Did your marks match?</span><button class="btn ghost chipbtn" data-act="match" data-v="1" aria-pressed="${sight.match===1}"${sight.match===null?'':' disabled'}>Yes</button>
+        <button class="btn ghost chipbtn" data-act="match" data-v="0" aria-pressed="${sight.match===0}"${sight.match===null?'':' disabled'}>Not all</button></div>`;}
       else h+=`<div class="row"><button class="btn ghost" data-act="model">Show a model answer</button></div>`;
     }else if(st===2){
       h+=`<p>${play?'Tap the right-hand rhythm.':'Tap the rhythm.'} One bar of clicks counts you in and the beat keeps clicking while you tap.</p>`+svg(inkSVG());
@@ -1299,7 +1396,7 @@ function renderSight(){
     if(ph==='ready')h=`<p>One attempt, the way it runs in the exam room. The ${thing} stays hidden until you begin, and you get ${play?30:15} seconds to look it over first.</p>
       <div class="row"><button class="btn" data-act="exbegin">Begin</button></div>`;
     else{
-      h=play?`<p>Four bars, hands together.</p>`:`<p>Four bars to tap, clap or speak.</p>`;
+      h=play?`<p>Four bars, hands together.</p>`:`<p>Four bars to tap, clap or speak. Perform the rhythm only, not the pitches.</p>`;
       h+=svg();
       if(ph==='look')h+=`<p>Look-over time: <b class="num" id="ex-left">${sight.left}</b> seconds. Find the key and time signature${play?', both starting notes,':''} and the trickiest bar. No playing yet.</p>
         <div class="row"><button class="btn" data-act="exgo">I am ready</button></div>`;
@@ -1308,9 +1405,9 @@ function renderSight(){
       else h+=recBlock(true,true)+askSelf(q)+starRow()+(sight.rated?`<div class="row"><button class="btn" data-act="sightnew">Next exam ${thing}</button></div>`:'');
     }
   }
-  $('#sight-panel').innerHTML=h+(play?`<p class="small muted">${soundNote()}</p>`:'');
+  $('#sight-panel').innerHTML=h+`<p class="small muted">${soundNote()}</p>`;
   $('#sight-stats').innerHTML=statRows([['Playing, practice',['sight.play'],4],['Rhythm, practice',['sight.rhythm'],4],
-    ['Playing, exam run',['exam.play'],4],['Rhythm, exam run',['exam.rhythm'],4]]);
+    ['Playing, exam run',['exam.play'],4],['Rhythm, exam run',['exam.rhythm'],4],['Marking up',['sight.mark'],1]]);
 }
 function examLook(){
   sight.phase='look';sight.left=sight.kind==='play'?30:15;clearInterval(sight.tick);
@@ -1368,9 +1465,13 @@ document.addEventListener('click',e=>{
   else if(act==='reveal'){ear.revealed=true;renderEar();}
   else if(act==='self'){mark(b.dataset.ok==='1');newQ();}
   else if(act==='earundo'){ear.entry.pop();renderEar();}
+  else if(act==='hint'){ear.hint=!ear.hint;renderEar();}
+  else if(act==='kbtoggle'){ear.kb=!ear.kb;renderEar();}
+  else if(act==='oct'){ear.oct=Math.max(-1,Math.min(1,ear.oct+(+b.dataset.d)));renderEar();}
+  else if(act==='match'){if(sight.match!==null)return;sight.match=+b.dataset.v;addStat('sight.mark',sight.match);renderSight();}
   else if(act==='eartap'){
     const q=ear.q;
-    tapStart({exp:q.ons.map(o=>o[0]),total:q.beats,beats:q.b,beat:.6,clicks:false,render:renderEar,
+    tapStart({exp:q.ev.map(e=>e.t*q.u),len:q.len,cinN:q.cinN,cinGap:q.cinGap,clicks:false,render:renderEar,
       done:r=>{if(!ear.scored){ear.scored=true;mark(r.ok);}ear.revealed=true;renderEar();}});
   }
   else if(act==='sightkind'){sight.kind=b.dataset.kind;genSight();}
