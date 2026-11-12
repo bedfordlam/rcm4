@@ -41,7 +41,7 @@
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--body)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
-.wrap{max-width:760px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;line-height:1.15}
 h1{font-size:1.9rem;font-weight:700;letter-spacing:-.01em}
 h2{font-size:1.2rem;font-weight:600}
@@ -213,13 +213,40 @@ ul.hist li:last-child{border-bottom:0}
 .met input[type=range]{flex:1;min-width:0;accent-color:var(--accent)}
 .step{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:var(--bg);font-size:1.1rem;flex:none}
 
+/* touch: every control at least 44px, no double-tap zoom, no long-press menus, press feedback */
+html{touch-action:manipulation;-webkit-text-size-adjust:100%}
+button,nav a,label,svg{-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none}
+button,nav a,.kb{user-select:none;-webkit-user-select:none}
+nav a{padding:10px 13px}
+.seg button{min-height:44px;padding:8px 16px}
+.btn{min-height:46px;padding:10px 20px}
+.chipbtn{min-height:44px;padding:8px 16px}
+.chip{min-height:44px;padding:8px 14px;font-size:.9375rem}
+.legend .chip{min-height:0;padding:6px 11px;font-size:.875rem}
+.keyrow h3{padding-top:11px}
+.answers button{min-height:52px;padding:12px 22px;font-size:1.0625rem}
+.tempo{min-width:64px;min-height:48px;justify-content:center}
+.task{padding:14px 0;align-items:center}
+.task input{width:28px;height:28px;margin:0}
+.step{width:46px;height:46px}
+.stepnav button{width:46px;height:46px;font-size:1.05rem}
+.star{font-size:2.5rem;padding:4px 8px;min-width:50px;min-height:50px}
+.pad{min-height:200px;font-size:1.15rem;touch-action:none}
+.pbkb{max-width:none}
+.pbkb svg{touch-action:none}
+.pk.down{fill:var(--accent)}
+.mk{stroke-width:3}
+.met input[type=range]{height:44px}
+.field input{min-height:46px}
+.btn:active,.answers button:active,.seg button:active,.chip:active,.stepnav button:active,.tempo:active,.star:active{transform:scale(.96)}
+
 @media (max-width:560px){
   .hero{grid-template-columns:minmax(0,1fr)}
   .keyline{font-size:2rem}
   .brand span{display:none}
   .keyrow{grid-template-columns:minmax(0,1fr);gap:6px}
   .keyrow h3{padding-top:0}
-  nav a{padding:6px 9px}
+  nav a{padding:10px 8px}
 }
 @media (prefers-reduced-motion:reduce){ .bar i{transition:none} }
 </style>
@@ -816,7 +843,8 @@ function tapEnd(){
     n:hit.filter(Boolean).length,ok:hit.every(Boolean)&&used.size===taps.length};
   sp.done(tap.res);
 }
-const tapPad=()=>`<button class="pad" id="tap-pad" data-tap>Wait for the count-in bar, then tap here or press the space bar</button>`;
+const COARSE=window.matchMedia&&matchMedia('(pointer:coarse)').matches;
+const tapPad=()=>`<button class="pad" id="tap-pad" data-tap>Wait for the count-in bar, then tap ${COARSE?'anywhere in this box':'here or press the space bar'}</button>`;
 function tapGrid(r){
   const X=t=>20+Math.max(0,Math.min(1,t/r.len))*680;let s=`<line x1="20" x2="700" y1="32" y2="32" class="sl"/>`;
   for(let t=0;t<=r.len+.001;t+=r.beat)s+=`<line x1="${X(t)}" x2="${X(t)}" y1="22" y2="42" class="sl"/>`;
@@ -957,7 +985,10 @@ const pbWant=q=>{const sc=q.k.min?[0,2,3,5,7]:[0,2,4,5,7];return q.degs.map(d=>q
 function pbKey(midi){
   if(!Object.keys(bufs).length)loadPiano();
   note(midi,ctx().currentTime+.01,.5);
-  if(ear.m!=='playback'||!ear.played||ear.answered||ear.revealed)return;
+  if(ear.m!=='playback'||!ear.played||ear.answered||ear.revealed){
+    const k=$('[data-pk="'+midi+'"]');if(k){k.classList.add('down');setTimeout(()=>k.classList.remove('down'),140);}
+    return;
+  }
   ear.entry.push(midi);
   const want=pbWant(ear.q);
   if(ear.entry.length===want.length){
@@ -965,13 +996,14 @@ function pbKey(midi){
     ear.answered=ok?'ok':'no';ear.revealed=true;mark(ok);
   }
   renderEar();
+  const k=$('[data-pk="'+midi+'"]');if(k){k.classList.add('down');setTimeout(()=>k.classList.remove('down'),140);}
 }
 function pbKeyboard(q){
-  const W=46,H=140,wh=[53,55,57,59,60,62,64,65,67,69,71,72];let s='',b='';
+  const W=46,H=176,wh=[53,55,57,59,60,62,64,65,67,69,71,72];let s='',b='';
   wh.forEach((m,i)=>{
     s+=`<rect x="${i*W+.5}" y=".5" width="${W-1}" height="${H-1}" rx="4" class="wk pk" data-pk="${m}"/>`;
     if(m===q.k.t)s+=`<circle cx="${i*W+W/2}" cy="${H-20}" r="7" class="dot tonic" pointer-events="none"/>`;
-    if(i<wh.length-1&&wh[i+1]-m===2)b+=`<rect x="${(i+1)*W-14}" y="0" width="28" height="86" rx="3" class="bk pk" data-pk="${m+1}"/>`;
+    if(i<wh.length-1&&wh[i+1]-m===2)b+=`<rect x="${(i+1)*W-14}" y="0" width="28" height="108" rx="3" class="bk pk" data-pk="${m+1}"/>`;
   });
   return `<div class="kb pbkb"><svg viewBox="0 0 ${wh.length*W} ${H}" role="group" aria-label="Piano keys from the F below middle C up to the C above it">${s}${b}</svg></div>`;
 }
@@ -1244,6 +1276,7 @@ function renderSight(){
         :'Circle every rest. Put an X above every pair of eighth notes. Draw a line to the right of the longest note.'}</p>
         <div class="row"><button class="btn ghost chipbtn" data-act="tool" data-v="pen" aria-pressed="${sight.tool==='pen'}">Pen</button>
         <button class="btn ghost chipbtn" data-act="tool" data-v="x" aria-pressed="${sight.tool==='x'}">X stamp</button>
+        <button class="btn ghost" data-act="inkundo"${sight.marks.length?'':' disabled'}>Undo</button>
         <button class="btn ghost" data-act="inkclear">Clear</button></div>`+svg(inkSVG(),true);
       if(sight.model){h+=`<span class="label">Model answer</span>`+svg(modelMarks(q))+`<p class="small muted">Compare the two. If you missed something, add it to yours before you go on.</p>`;}
       else h+=`<div class="row"><button class="btn ghost" data-act="model">Show a model answer</button></div>`;
@@ -1321,7 +1354,6 @@ function fillForm(){
 function renderAll(){renderToday();renderTech();fillForm();renderMock();}
 
 document.addEventListener('click',e=>{
-  const pk=e.target.closest('[data-pk]');if(pk){pbKey(+pk.dataset.pk);return;}
   const b=e.target.closest('[data-act]');if(!b)return;
   const act=b.dataset.act;
   if(act==='mins'){state.mins=+b.dataset.m;save();renderToday();}
@@ -1353,6 +1385,7 @@ document.addEventListener('click',e=>{
   else if(act==='quiz'){sight.quiz[b.dataset.id]=b.dataset.v;renderSight();}
   else if(act==='tool'){sight.tool=b.dataset.v;renderSight();}
   else if(act==='inkclear'){sight.marks=[];renderSight();}
+  else if(act==='inkundo'){sight.marks.pop();renderSight();}
   else if(act==='model'){sight.model=true;renderSight();}
   else if(act==='sighttap'){sightTap();}
   else if(act==='recstart'){
@@ -1397,7 +1430,8 @@ let stroke=null;
 const inkPt=(svg,e)=>{const r=svg.getBoundingClientRect(),vb=svg.viewBox.baseVal;
   return [+((e.clientX-r.left)/r.width*vb.width).toFixed(1),+((e.clientY-r.top)/r.height*vb.height).toFixed(1)];};
 document.addEventListener('pointerdown',e=>{
-  if(e.target.closest('[data-tap]')){tapHit();return;}
+  if(e.target.closest('[data-tap]')){e.preventDefault();tapHit();return;}
+  const pk=e.target.closest('[data-pk]');if(pk){e.preventDefault();pbKey(+pk.dataset.pk);return;}
   const svg=e.target.closest('svg[data-ink]');if(!svg)return;
   e.preventDefault();const p=inkPt(svg,e);
   if(sight.tool==='x')sight.marks.push({t:'x',x:p[0],y:p[1]});
@@ -1408,7 +1442,15 @@ document.addEventListener('pointermove',e=>{
   if(!stroke)return;const svg=$('svg[data-ink]');if(!svg){stroke=null;return;}
   stroke.pts.push(inkPt(svg,e));svg.querySelector('#ink').innerHTML=inkSVG();
 });
-['pointerup','pointercancel'].forEach(n=>document.addEventListener(n,()=>{stroke=null;}));
+['pointerup','pointercancel'].forEach(n=>document.addEventListener(n,()=>{if(stroke){stroke=null;renderSight();}}));
+// Tablets: unlock sound on the first touch, and keep the screen awake on the music stand.
+['touchend','click'].forEach(n=>document.addEventListener(n,()=>{try{ctx();}catch(e){}},{passive:true}));
+let wake=null;
+async function keepAwake(){
+  try{if(navigator.wakeLock&&!wake&&document.visibilityState==='visible'){wake=await navigator.wakeLock.request('screen');wake.addEventListener('release',()=>{wake=null;});}}catch(e){}
+}
+document.addEventListener('click',keepAwake);
+document.addEventListener('visibilitychange',keepAwake);
 document.addEventListener('keydown',e=>{
   if(!tap.on||e.code!=='Space')return;
   e.preventDefault();if(!e.repeat)tapHit();
